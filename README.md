@@ -1,0 +1,1 @@
+#Mean mini store 
