@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, './client')));
 //config routes and database 
 require('./server/config/mongoose.js');
-// require('./server/config/routes.js')(app);
+require('./server/config/routes.js')(app);
 
 // binds and listens for connections on the specified host and port 
 app.listen(3000, function(){

@@ -1,0 +1,22 @@
+<div class="wrapper" ng-controller="ProductsController">
+  <div id="sidebar-wrapper">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <label for="#productform">Add Products
+        <form>
+          <label for="name">Name:</label>
+          <input type="text" placeholder="name" ng-model="newProduct.name">
+          <label for="image">Image(url):
+          <input type="text" placeholder="http://" ng-model="newProduct.imageUrl"></label>
+          <label for="description">Description
+          <input type="textarea" placeholder="description" ng-model="newProduct.description"></label>
+          <label for="qty"> Qty
+          <input type="text" placeholder="qty" ng-model="newProduct.qty">
+          </label>
+          <input type="submit" class="btn btn-default" ng-click="create()">
+        </form></label>
+      </ul>
+    </div>
+  </div>
+<!-- /#sidebar-wrapper -->
+</div>
