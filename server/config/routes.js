@@ -26,13 +26,13 @@ module.exports = function(app){
     console.log("routes post /products")
   })
 
-  // app.get('/orders', function(req, res){
-  //  console.log("hit the orders")
-  //   orders.index(req, res); 
-  // })
+  app.get('/orders', function(req, res){
+   console.log("hit the orders")
+    orders.index(req, res); 
+  })
 
-  // app.post('/orders', function(req, res){
-  //   console.log("hit the post for orders")
-  //   orders.create(req, res);
-  // })
+  app.post('/orders', function(req, res){
+    console.log("hit the post for orders")
+    orders.create(req, res);
+  })
 }

@@ -31,6 +31,9 @@
       .when('/product', {
         templateUrl: "partials/product.html"
       })
+      .when('/orders', {
+        templateUrl: "partials/orders.html"
+      })
       .otherwise({
         redirectTo: '/'
       })
@@ -72,11 +75,6 @@
     var factory = {};
     var products = [];
   
-    var get_user = function ($scope) {
-       username = prompt("Please enter your name")
-       $scope.newProduct.posted_by = username; 
-       console.log(username);
-    }
   factory.index = function(callback){
     $http.get('/products').success(function(output){
       products = output;
@@ -85,14 +83,44 @@
     })
   }
   factory.create = function(product, callback){
-    $http.post('/products', product).success(function(output){
-      console.log("create product factory");
-      products.push(output);
-      callback(products);
-    })
+     console.log("hit create factory")
+     console.log(product.imageUrl)
+     if(product.imageUrl === undefined){
+        product.imageUrl = "http://i.imgur.com/2xL2e54.png"
+        console.log(product)
+      }
+      console.log("hit products")
+      $http.post('/products', product).success(function(output){
+        console.log("create product factory");
+        products.push(output);
+        callback(products);
+      })
   }
   return factory;
   })
+
+//orders factory 
+    myApp.factory('OrdersFactory', function($http){
+      var factory = {};
+      var orders = [];
+
+      factory.index = function(callback){
+        $http.get('/orders').success(function(output){
+          orders = output;
+          callback(orders); 
+        })
+      }
+
+      factory.create = function(info, callback){
+        $http.post('/orders', info).success(function(output){
+          orders.push(output);
+        })
+      }
+
+    return factory; 
+
+    })
+
 
 // customer controller 
   myApp.controller("CustomersController", function($scope, CustomerFactory){
@@ -134,6 +162,29 @@
       $scope.newProduct = null; 
     }
   })
+
+
+  //orders controller 
+  myApp.controller("OrdersController", function($scope, ProductFactory, CustomerFactory, OrdersFactory){
+    ProductFactory.index(function(products){
+      $scope.products = products;
+    })
+    CustomerFactory.index(function(customers){
+      $scope.customers = customers;
+    })
+
+    OrdersFactory.index(function(orders){
+      $scope.orders = orders; 
+    })
+    $scope.createOrders = function() {
+      console.log($scope.newOrder)
+      OrdersFactory.create($scope.newOrder, function() {
+      OrdersFactory.index(function(data){
+        $scope.orders = data; 
+        })
+      })
+    }
+  })
   </script>
 
 </head>
@@ -148,7 +199,7 @@
               <li><a href="#/dashboard">Dashboard</a></li>
               <li><a href="#/customer">Customer</a></li>
               <li><a href="#/product">Products</a></li>
-              <li><a href="#">Orders</a></li>
+              <li><a href="#/orders">Orders</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="#">Settings</a></li>
             </ul>

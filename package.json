@@ -1,9 +1,8 @@
 {
-  "name": "MinimeanStore",
+  "name": "PS4",
   "version": "0.0.1",
   "dependencies": {
     "body-parser": "latest",
-    "express": "~4.2.0",
-    "mongoose": "latest"
+    "express": "~4.2.0"
   }
 }

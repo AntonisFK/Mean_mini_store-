@@ -10,16 +10,17 @@ module.exports = (function() {
       })
     },
     create: function(req, res){
-     console.log("hit create")
+     console.log("hit create products")
      console.log(req.body)
-      Product.create(req.body, function(err, Product){
-        if(err){
-          console.log(err);
-        }
-        else{
-          res.json(Product)
-        }
-      })
+     Product.create(req.body, function(err, Product){
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.json(Product)
+      }
+    })
+      
     },
     delete: function(req, res){
       Product.remove({_id: req.params.id}, function(err, results){

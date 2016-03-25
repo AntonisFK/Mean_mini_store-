@@ -1,4 +1,4 @@
-<div class="wrapper" ng-controller="ProductsController">
+<div class="container" ng-controller="ProductsController">
   <div id="sidebar-wrapper">
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
@@ -19,4 +19,16 @@
     </div>
   </div>
 <!-- /#sidebar-wrapper -->
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="page-header">Products </h1>
+  </div>
+  <div ng-repeat= "product in products">
+    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+    <label for="img-responsive">{{product.name}}</label>
+    <img class="img-responsive" src="{{product.imageUrl}}" alt="{{product.imageUrl}}">
+    <p><b>Qty:</b>{{product.qty}}</p>
+  </div>
+</div>
+
 </div>

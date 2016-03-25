@@ -4,7 +4,6 @@ var ProductSchema = new mongoose.Schema({
   name: {type: String, required: true },
   imageUrl: {type: String, required: true},
   qty: {type: String, required:true},
-  posted_by: {type: String, required: true},
   created_at: {type: Date, default: Date.now}
 })
 
